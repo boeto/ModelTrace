@@ -18,10 +18,11 @@ python start.py
 ## 使用
 
 - **手动测试**：复制三条挑战，分别发送给同一个待测模型，再粘贴每次完整输出。
-- **API 自动测试**：填写 Base URL、API Key 和模型名。程序会自动尝试 OpenAI Chat Completions 与 Anthropic Messages 格式，以三份有效回答为目标完成归因。
+- **API 自动测试**：填写 Base URL、API Key 和模型名。程序会自动尝试 OpenAI Chat Completions、OpenAI Responses 与 Anthropic Messages 格式，以三份有效回答为目标完成归因。
 - **指纹库管理**：可以新建指纹库，或通过 API 为现有指纹库添加模型指纹。
 
 API Key 只用于当前页面发起请求，不写入磁盘。
+Base URL 可填写服务地址、以 `/v1` 结尾的 API 地址，或完整的 `/chat/completions`、`/responses`、`/messages` 端点。仅支持 Responses API 的 Codex 网关也可自动测试和采集指纹；未完成、截断、拒绝或没有文本的 Responses 回答不会计入有效输出。
 自动采集会在对应的 `*_reference.jsonl` 中保存实际 user prompt、base prompt、system prompt 和 user prefix；拟合后的 `*_bank.json` 与 `unified_bank.json` 只保存统计指纹和校准参数。
 
 ## 指纹方法
